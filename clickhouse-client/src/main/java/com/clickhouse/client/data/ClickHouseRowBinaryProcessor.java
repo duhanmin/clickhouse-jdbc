@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 
+import cn.hutool.json.JSONUtil;
 import com.clickhouse.client.ClickHouseAggregateFunction;
 import com.clickhouse.client.ClickHouseChecker;
 import com.clickhouse.client.ClickHouseColumn;
@@ -47,43 +48,43 @@ public class ClickHouseRowBinaryProcessor extends ClickHouseDataProcessor {
                 }
             } else {
                 ClickHouseValue v = ClickHouseValues.newValue(config, baseColumn);
-                if (byte.class == javaClass) {
-                    Byte[] array = value.asArray(Byte.class);
+                if (byte.class == javaClass || Byte.class.equals(javaClass)) {
+                    Byte[] array = (Byte[]) JSONUtil.parseArray(value).toArray(Byte.class);
                     int length = array.length;
                     output.writeVarInt(length);
                     for (int i = 0; i < length; i++) {
                         serialize(v.update(array[i]), config, baseColumn, output);
                     }
-                } else if (short.class == javaClass) {
-                    Short[] array = value.asArray(Short.class);
+                } else if (short.class == javaClass || Short.class.equals(javaClass)) {
+                    Short[] array = (Short[]) JSONUtil.parseArray(value).toArray(Short.class);
                     int length = array.length;
                     output.writeVarInt(length);
                     for (int i = 0; i < length; i++) {
                         serialize(v.update(array[i]), config, baseColumn, output);
                     }
-                } else if (int.class == javaClass) {
-                    Integer[] array = value.asArray(Integer.class);
+                } else if (int.class == javaClass || Integer.class.equals(javaClass)) {
+                    Integer[] array = (Integer[]) JSONUtil.parseArray(value).toArray(Integer.class);
                     int length = array.length;
                     output.writeVarInt(length);
                     for (int i = 0; i < length; i++) {
                         serialize(v.update(array[i]), config, baseColumn, output);
                     }
-                } else if (long.class == javaClass) {
-                    Long[] array = value.asArray(Long.class);
+                } else if (long.class == javaClass || Long.class.equals(javaClass)) {
+                    Long[] array = (Long[]) JSONUtil.parseArray(value).toArray(Long.class);
                     int length = array.length;
                     output.writeVarInt(length);
                     for (int i = 0; i < length; i++) {
                         serialize(v.update(array[i]), config, baseColumn, output);
                     }
-                } else if (float.class == javaClass) {
-                    Float[] array = value.asArray(Float.class);
+                } else if (float.class == javaClass || Float.class.equals(javaClass)) {
+                    Float[] array = (Float[]) JSONUtil.parseArray(value).toArray(Float.class);
                     int length = array.length;
                     output.writeVarInt(length);
                     for (int i = 0; i < length; i++) {
                         serialize(v.update(array[i]), config, baseColumn, output);
                     }
-                } else if (double.class == javaClass) {
-                    Double[] array = value.asArray(Double.class);
+                } else if (double.class == javaClass || Double.class.equals(javaClass)) {
+                    Double[] array = (Double[]) JSONUtil.parseArray(value).toArray(Double.class);
                     int length = array.length;
                     output.writeVarInt(length);
                     for (int i = 0; i < length; i++) {
