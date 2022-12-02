@@ -143,16 +143,7 @@ Use `mvn -DskipITs clean verify` to compile and generate packages if you're usin
             <version>11</version>
         </provides>
         <configuration>
-            <jdkHome>/usr/lib/jvm/java-11-openjdk</jdkHome>
-        </configuration>
-    </toolchain>
-    <toolchain>
-        <type>jdk</type>
-        <provides>
-            <version>17</version>
-        </provides>
-        <configuration>
-            <jdkHome>/usr/lib/jvm/java-17-openjdk</jdkHome>
+            <jdkHome>/Users/duhanmin/Library/Java/JavaVirtualMachines/corretto-11.0.16/Contents/Home</jdkHome>
         </configuration>
     </toolchain>
 </toolchains>
